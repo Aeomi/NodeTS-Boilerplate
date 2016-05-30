@@ -1,3 +1,9 @@
-import * as express from "express";
-var app = express();
-
+class Greeter {
+    greeting: string;
+    constructor(message: string) {
+        this.greeting = message;
+    }
+    greet() {
+        return "Hello, " + this.greeting;
+    }
+}
