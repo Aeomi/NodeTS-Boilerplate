@@ -1,0 +1,9 @@
+{
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.13.4",
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^2.13.5",
+    "gulp-uglify": "^1.5.3"
+  }
+}
