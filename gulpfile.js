@@ -14,7 +14,6 @@ var tsProject = ts.createProject("tsconfig.json");
 gulp.task("node", () => {
     return gulp.src(paths.node)
         .pipe(ts(tsProject))
-        // .pipe( uglify() )
         .pipe(gulp.dest("./build/"));
 })
 
