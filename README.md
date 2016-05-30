@@ -1,5 +1,5 @@
 ## NodeTS Boilerplate
-TypeScript for NodeJS with Expressed Typings.
+TypeScript for NodeJS with Express definitions.
 
 ```
 npm install
