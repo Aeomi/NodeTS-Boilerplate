@@ -1,6 +1,5 @@
 var gulp = require("gulp");
 var ts = require("gulp-typescript");
-var uglify = require("gulp-uglify");
 
 var paths = {
     node: [
@@ -26,6 +25,7 @@ gulp.task("package.json", () => {
 
 gulp.task("watch", () => {
     gulp.watch(paths.node, ["node"]);
+    gulp.watch(paths.package, ["package.json"]);
 });
 
-gulp.task("default", ["watch", "node"]);
+gulp.task("default", ["watch", "node", "package.json"]);
