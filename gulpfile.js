@@ -1,5 +1,6 @@
 var gulp = require("gulp");
 var ts = require("gulp-typescript");
+var sourcemaps = require("gulp-sourcemaps");
 
 var paths = {
     node: [
@@ -7,14 +8,22 @@ var paths = {
         "./typings/index.d.ts"
     ],
     package: "./src/package.json",
-    build: "./build"
+    build: "./build",
+    sourcemaps : "sourcemaps"
 };
 
 var tsProject = ts.createProject("tsconfig.json");
 
 gulp.task("node", () => {
-    return gulp.src(paths.node)
-        .pipe(ts(tsProject))
+    var tsResult = gulp.src(paths.node)
+        .pipe(sourcemaps.init())
+        .pipe(ts("./tsconfig.json"))
+ 
+        // tsResult.dts
+        //     .pipe(gulp.dest(paths.build))
+ 
+        return tsResult.js
+        .pipe(sourcemaps.write(paths.sourcemaps))
         .pipe(gulp.dest(paths.build));
 });
 
