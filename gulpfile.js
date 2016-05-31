@@ -14,13 +14,13 @@ var paths = {
 
 var tsProject = ts.createProject("tsconfig.json");
 
-gulp.task("node", () => {
+gulp.task("typescript", () => {
     var tsResult = gulp.src(paths.node)
         .pipe(sourcemaps.init())
         .pipe(ts("./tsconfig.json"))
  
-        // tsResult.dts
-        //     .pipe(gulp.dest(paths.build))
+        tsResult.dts
+            .pipe(gulp.dest(paths.build))
  
         return tsResult.js
         .pipe(sourcemaps.write(paths.sourcemaps))
@@ -33,8 +33,8 @@ gulp.task("package.json", () => {
 });
 
 gulp.task("watch", () => {
-    gulp.watch(paths.node, ["node"]);
+    gulp.watch(paths.node, ["typescript"]);
     gulp.watch(paths.package, ["package.json"]);
 });
 
-gulp.task("default", ["watch", "node", "package.json"]);
+gulp.task("default", ["watch", "typescript", "package.json"]);
