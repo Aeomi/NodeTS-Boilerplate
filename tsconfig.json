@@ -1,13 +1,13 @@
 {
-    "compilerOptions": {
-       "target": "es5",
-       "allowJs": true,
-       "module": "commonjs"
-    },
-    
-    "exclude": [
-        "node_modules",
-        "typings/globals",
-        "build"
-    ]
+	"compilerOptions": {
+	   "target": "es5",
+	   "allowJs": true,
+	   "module": "commonjs"
+	},
+	
+	"exclude": [
+		"node_modules",
+		"build",
+		"typings/**/"
+	]
 }

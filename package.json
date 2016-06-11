@@ -1,8 +1,9 @@
 {
-  "main": "src/app.js",
-  "dependencies": {
-    "gulp": "^3.9.1",
-    "gulp-sourcemaps": "^1.6.0",
-    "gulp-typescript": "^2.13.5"
-  }
+	"main": "src/app.js",
+	"dependencies": {
+		"gulp": "^3.9.1",
+		"gulp-sourcemaps": "^1.6.0",
+		"gulp-typescript": "^2.13.5",
+		"gulp-concat": "^2.6.0"
+	}
 }
