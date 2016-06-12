@@ -8,7 +8,7 @@ var paths = {
 		"./typings/tsd.d.ts"
 	],
 	package: "./src/package.json",
-	build: "./build",
+	build: "./dist",
 	sourcemaps : "sourcemaps"
 };
 
@@ -27,14 +27,8 @@ gulp.task("typescript", () => {
 		.pipe(gulp.dest(paths.build));
 });
 
-gulp.task("package.json", () => {
-	return gulp.src(paths.package)
-		.pipe(gulp.dest(paths.build));
-});
-
 gulp.task("watch", () => {
 	gulp.watch(paths.node, ["typescript"]);
-	gulp.watch(paths.package, ["package.json"]);
 });
 
 gulp.task("default", ["watch", "typescript"]);
