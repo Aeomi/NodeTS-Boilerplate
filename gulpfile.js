@@ -1,6 +1,8 @@
 var gulp = require("gulp");
 var ts = require("gulp-typescript");
 var sourcemaps = require("gulp-sourcemaps");
+var uglifyJS = require("gulp-uglify");
+var concat = require("gulp-concat");
 
 var paths = {
 	node: [
@@ -9,6 +11,8 @@ var paths = {
 	],
 	package: "./src/package.json",
 	build: "./dist",
+	venderIn: "./src/www/js/**/*.js",
+	vendorOut: "./dist/www/js",
 	sourcemaps : "sourcemaps"
 };
 
@@ -27,8 +31,16 @@ gulp.task("typescript", () => {
 		.pipe(gulp.dest(paths.build));
 });
 
+gulp.task("vendor.js", () => {
+	return gulp.src(paths.venderIn)
+		.pipe(concat("vendor.js"))
+		.pipe(uglifyJS())
+		.pipe(gulp.dest(paths.vendorOut));
+})
+
 gulp.task("watch", () => {
 	gulp.watch(paths.node, ["typescript"]);
+	gulp.watch(paths.venderIn, ["vendor.js"]);
 });
 
-gulp.task("default", ["watch", "typescript"]);
+gulp.task("default", ["watch", "typescript", "vendor.js"]);
