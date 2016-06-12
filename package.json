@@ -1,6 +1,7 @@
 {
   "main": "src/app.js",
   "dependencies": {
+    "event-stream": "^3.3.2",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
     "gulp-sourcemaps": "^1.6.0",

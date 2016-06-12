@@ -3,6 +3,7 @@ var ts = require("gulp-typescript");
 var sourcemaps = require("gulp-sourcemaps");
 var uglifyJS = require("gulp-uglify");
 var concat = require("gulp-concat");
+var es = require("event-stream");
 
 var paths = {
 	node: [
@@ -11,7 +12,8 @@ var paths = {
 	],
 	package: "./src/package.json",
 	build: "./dist",
-	venderIn: "./src/www/js/**/*.js",
+	venderInJS: "./src/www/js/**/*.js",
+	venderInTS: "./src/www/ts/**/*.ts",
 	vendorOut: "./dist/www/js",
 	sourcemaps : "sourcemaps"
 };
@@ -32,15 +34,20 @@ gulp.task("typescript", () => {
 });
 
 gulp.task("vendor.js", () => {
-	return gulp.src(paths.venderIn)
-		.pipe(concat("vendor.js"))
-		.pipe(uglifyJS())
-		.pipe(gulp.dest(paths.vendorOut));
+	return es.merge(
+		gulp.src(paths.venderInJS),
+		
+		gulp.src(paths.venderInTS)
+		.pipe(ts({target:"ES5"}))
+	)
+	.pipe(concat("vendor.js"))
+	.pipe(uglifyJS())
+	.pipe(gulp.dest(paths.vendorOut));
 })
 
 gulp.task("watch", () => {
 	gulp.watch(paths.node, ["typescript"]);
-	gulp.watch(paths.venderIn, ["vendor.js"]);
+	gulp.watch(paths.venderInJS, ["vendor.js"]);
 });
 
 gulp.task("default", ["watch", "typescript", "vendor.js"]);
