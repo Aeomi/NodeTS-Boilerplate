@@ -48,3 +48,4 @@ typings
 # Dist
 dist/**/*.js
 dist/**/*.css
+dist/sourcemaps
